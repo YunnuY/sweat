@@ -31,10 +31,11 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-
+  /*
   '/': {
     view: 'homepage'
   }
+  */
 
   /***************************************************************************
   *                                                                          *
@@ -45,5 +46,7 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+
+    '/*': { controller: 'App', action: 'serve', skipAssets: true, skipRegex: /^\/api\/.*$/ }
 
 };
