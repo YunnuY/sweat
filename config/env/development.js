@@ -21,4 +21,10 @@ module.exports = {
   //   connection: 'someMongodbServer'
   // }
 
+  wechat: {
+    token: '',
+    appid: '',
+    encodingAESKey: ''
+  }
+
 };
