@@ -10,7 +10,12 @@ var wechat = require('wechat');
 module.exports = {
 
   auth: function (req, res) {
-    res.send('abc');
+    params = req.params.all();
+    if(wechat.checkSignature(params, sails.config.wechat.token)) {
+      res.send(params['echostr']);
+    } else {
+      res.ok();
+    }
   },
 
   /**
