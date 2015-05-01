@@ -9,6 +9,10 @@ var wechat = require('wechat');
 
 module.exports = {
 
+  auth: function (req, res) {
+    res.send('abc');
+  },
+
   /**
    * `AppController.serve()`
    */

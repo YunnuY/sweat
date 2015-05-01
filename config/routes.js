@@ -47,6 +47,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-    '/*': { controller: 'App', action: 'serve', skipAssets: true, skipRegex: /^\/api\/.*$/ }
+  'get /': 'AppController.auth',
+  'post /': 'AppController.serve'
 
 };
