@@ -20,7 +20,16 @@ module.exports.http = {
   * `customMiddleware` config option.                                         *
   *                                                                           *
   ****************************************************************************/
-
+  bodyParser: function() {
+    var xmlParser = require('express-xml-bodyparser')();
+    var bodyParser = require('body-parser')();
+    return function(req, res, next) {
+      if (req.headers && (req.headers['content-type'] == 'text/xml' || req.headers['content-type'] == 'application/xml')) {
+        return xmlParser(req, res, next);
+      }
+      return bodyParser(req, res, next);
+    };
+  }
   // middleware: {
 
   /***************************************************************************

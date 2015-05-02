@@ -5,7 +5,9 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "body-parser": "^1.12.3",
     "ejs": "~0.8.4",
+    "express-xml-bodyparser": "0.0.7",
     "grunt": "0.4.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.10.1",
@@ -38,6 +40,7 @@
   "author": "ming",
   "license": "",
   "devDependencies": {
+    "should": "^6.0.1",
     "supertest": "^0.15.0"
   }
 }

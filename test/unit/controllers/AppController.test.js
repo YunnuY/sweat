@@ -1,3 +1,4 @@
+var should = require('should');
 var request = require('supertest');
 var template = require('../../support').template;
 var tail = require('../../support').tail();
@@ -27,16 +28,17 @@ describe('AppController', function() {
       };
       request(sails.hooks.http.app)
       .post('/' + tail)
+      .set('Content-Type', 'text/xml')
       .send(template(info))
       .expect(200)
       .end(function(err, res){
         if (err) return done(err);
         var body = res.text.toString();
-        body.should.include('<ToUserName><![CDATA[diaosi]]></ToUserName>');
-        body.should.include('<FromUserName><![CDATA[nvshen]]></FromUserName>');
+        (body.indexOf('<ToUserName><![CDATA[diaosi]]></ToUserName>')).should.above(0);
+        (body.indexOf('<FromUserName><![CDATA[nvshen]]></FromUserName>')).should.above(0);
         body.should.match(/<CreateTime>\d{13}<\/CreateTime>/);
-        body.should.include('<MsgType><![CDATA[text]]></MsgType>');
-        body.should.include('<Content><![CDATA[hehe]]></Content>');
+        (body.indexOf('<MsgType><![CDATA[text]]></MsgType>')).should.above(0);
+        (body.indexOf('<Content><![CDATA[hehe]]></Content>')).should.above(0);
         done();
       });
     });
