@@ -10,6 +10,16 @@
  * http://sailsjs.org/#/documentation/concepts/Logging
  */
 
+var winston = require('winston');
+var file = '../logs/' + moment().format('YYYY-MM-DD') +'.log';
+
+var logger = new (winston.Logger)({
+  transports: [
+    new (winston.transports.Console)({ level: 'error' }),
+    new (winston.transports.File)({ filename: file })
+  ]
+});
+
 module.exports.log = {
 
   /***************************************************************************
@@ -25,5 +35,7 @@ module.exports.log = {
   ***************************************************************************/
 
   // level: 'info'
+  //colors: false,
+  custom: logger
 
 };
