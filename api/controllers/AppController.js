@@ -12,7 +12,7 @@ module.exports = {
   auth: function (req, res) {
     params = req.params.all();
     if(wechat.checkSignature(params, sails.config.wechat.token)) {
-      res.send(params['echostr']);
+      res.send(params.echostr);
     } else {
       res.ok();
     }

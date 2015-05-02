@@ -3,8 +3,14 @@ var request = require('supertest');
 describe('AppController', function() {
 
   describe('#auth()', function() {
-    var params = { signature: 'signature', timestamp: 'timestamp', nonce: 'nonce', echostr: 'echostr' };
     it('should response echostr', function (done) {
+      var params = {
+        timestamp: new Date().getTime(),
+        nonce: parseInt((Math.random() * 10e10), 10)
+      };
+      var s = [sails.config.wechat.token, params.timestamp, params.nonce].sort().join('');
+      params.signature = require('crypto').createHash('sha1').update(s).digest('hex');
+      params.echostr = 'hehe';
       request(sails.hooks.http.app)
         .get('/')
         .query(params)
