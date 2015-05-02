@@ -47,7 +47,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'get /': 'AppController.auth',
-  'post /': 'AppController.serve'
+  '/*': 'AppController.wechat'
 
 };
