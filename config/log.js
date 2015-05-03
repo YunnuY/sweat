@@ -11,14 +11,11 @@
  */
 
 var winston = require('winston');
-var moment = require('moment');
-var file = '../logs/' + moment().format('YYYY-MM-DD') +'.log';
 
-var logger = new (winston.Logger)({
-  transports: [
-    new (winston.transports.Console)(),
-    new (winston.transports.File)({ filename: file })
-  ]
+winston.add(winston.transports.DailyRotateFile, {
+  filename: './logs/sails-wechat.log',
+  // byte
+  maxsize: 1024 * 1024 * 10
 });
 
 module.exports.log = {
@@ -37,6 +34,6 @@ module.exports.log = {
 
   // level: 'info'
   colors: false,
-  custom: logger
+  custom: winston
 
 };

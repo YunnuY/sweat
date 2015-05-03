@@ -65,7 +65,7 @@ module.exports.http = {
   ****************************************************************************/
 
      myRequestLogger: function (req, res, next) {
-       console.log("Requested :: ", req.method, req.url, req.headers['content-type']);
+       sails.log.info("Requested :: ", req.method, req.url, req.headers['content-type']);
        return next();
      }
 
