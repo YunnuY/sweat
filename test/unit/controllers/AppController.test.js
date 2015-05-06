@@ -13,11 +13,16 @@ describe('AppController', function() {
         .query(params)
         .expect(200, params.echostr, done);
     });
-    it('invalid get should response 401', function (done) {
+    it('without wechat params should get home page', function (done) {
       request(sails.hooks.http.app)
       .get('/')
-      .expect(401)
-      .expect('Invalid signature', done);
+      .expect(200)
+      .end(function(err, res){
+        if (err) return done(err);
+        var body = res.text.toString();
+        (body.indexOf('html')).should.above(0);
+        done();
+      });
     });
     it('valid post should ok', function (done) {
       var info = {

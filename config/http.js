@@ -39,6 +39,7 @@ module.exports.http = {
   * router is invoked by the "router" middleware below.)                     *
   *                                                                          *
   ***************************************************************************/
+     isFromWechat: require('../api/middlewares/isFromWechat').isFromWechat,
 
      order: [
        'startRequestTimer',
@@ -51,6 +52,7 @@ module.exports.http = {
        'methodOverride',
        'poweredBy',
        '$custom',
+       'isFromWechat',
        'router',
        'www',
        'favicon',
@@ -66,6 +68,7 @@ module.exports.http = {
 
      myRequestLogger: function (req, res, next) {
        sails.log.info("Requested :: ", req.method, req.url, req.headers['content-type']);
+       console.log('http:', this);
        return next();
      }
 
